@@ -19,7 +19,7 @@ const navList = [
 ];
 
 const Header = () => {
-  const [toggleMode, setToggleMode] = useState(false);
+  const [toggleMode, setToggleMode] = useState(true);
 
   useEffect(() => {
     if (toggleMode === true) {
@@ -34,12 +34,12 @@ const Header = () => {
 
   return (
     <header className="border-b dark:border-gray-800 p-4 font-poppins bg-white dark:bg-[#0D121C] duration-300">
-      <div className="max-w-[1280px] mx-auto flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
         {/* logo */}
         <NavLink to="/">
-          <div className="w-[100px] text-2xl md:text-4xl">
+          <div className="w-[100px] text-2xl md:text-4xl font-bold">
             <span className="dark:text-white">Vuln</span>
-            <span className="text-orange-500 font-medium tracking-widest">Hunt</span>
+            <span className="text-orange-500">HuntX</span>
           </div>
         </NavLink>
 
@@ -115,7 +115,7 @@ const Header = () => {
             {navList.map((navItem, index) => (
               <Link to={navItem.path} key={index}>
                 <li
-                  className=" flex items-center gap-x-1 duration-150 hover:text-orange-500 list-none cursor-pointer text-base font-medium text-[#343C3F] dark:text-white dark:hover:text-orange-500"
+                  className=" flex items-center gap-x-1 duration-150 hover:text-orange-500 list-none cursor-pointer text-xl font-medium text-[#343C3F] dark:text-white dark:hover:text-orange-500"
                   key={index}
                 >
                   {navItem.name}
@@ -143,6 +143,7 @@ const Header = () => {
               outline
               gradientDuoTone="pinkToOrange"
               className="whitespace-nowrap"
+              size="md"
             >
               Login
             </Button>
