@@ -45,7 +45,7 @@ const Home = () => {
             <div className="p-8 md:p-10 space-y-8 duration-200 w-1/2 h-fit">
               <div className="text-center">
                 <h2 className=" text-md md:text-5xl font-light dark:text-white">
-                  Is Your Website Vulnerable?
+                  Is Your Data Saved?
                 </h2>
                 <h2 className=" text-5xl md:text-6xl font-bold dark:text-white">
                   Scan for vulnerable endpoints
