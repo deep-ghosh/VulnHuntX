@@ -6,6 +6,7 @@ const Home = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [url, setUrl] = useState("");
+  const [scanResults, setScanResults] = useState(""); // New state to store scan results
 
   const isValidUrl = (url) => {
     const pattern = new RegExp(
@@ -24,6 +25,7 @@ const Home = () => {
     if (url && isValidUrl(url)) {
       setErrorMessage(""); // Clear any previous error message
       setSuccessMessage(""); // Clear any previous success message
+      setScanResults(""); // Clear previous scan results
 
       try {
         const response = await fetch(`http://localhost:3000/search`, {
@@ -40,9 +42,12 @@ const Home = () => {
 
         const data = await response.json();
 
-        // Handle the response data here
-        console.log("Scan result:", data);
-        setSuccessMessage("Scan completed successfully!");
+        // Handle the response data and show FFuf results
+        console.log("Scan result:", data.result);
+        setScanResults(data.result); // Save FFuf results
+        setSuccessMessage(
+          "Scan completed successfully! Results are displayed below."
+        );
 
         // Automatically hide the success message after 5 seconds
         setTimeout(() => {
@@ -85,17 +90,19 @@ const Home = () => {
                 </h2>
               </div>
               <div className="flex flex-col md:flex-row justify-between dark:bg-gray-800 bg-orange-400 rounded-lg space-y-4 md:space-y-0 p-4">
+                {/* <div className="w-full"> */}
                 <input
                   type="text"
                   name="domain"
                   value={url}
                   onChange={handleChange}
                   placeholder="Enter website URL"
-                  className={`w-full rounded-s-md outline-none bg-white placeholder:text-gray-400 placeholder:text-2xl border-none p-4 ${
+                  className={`w-full rounded-s-md outline-none bg-white placeholder:text-gray-400 placeholder:text-2xl border-none ${
                     errorMessage ? "border-red-500 border-2 text-red-500" : ""
                   }`}
                   required
                 />
+                {/* </div> */}
                 <button
                   type="submit"
                   onClick={handleScan}
@@ -107,7 +114,7 @@ const Home = () => {
               </div>
               {successMessage && (
                 <div className="text-green-500 font-semibold text-center mt-4">
-                  {successMessage}
+                  {successMessage}``
                 </div>
               )}
               {errorMessage && (
@@ -115,11 +122,19 @@ const Home = () => {
                   {errorMessage}
                 </div>
               )}
+              {/* Display scan results here */}
+              {scanResults && (
+                <div className="bg-gray-200 dark:bg-gray-800 p-4 mt-4 rounded-lg">
+                  <pre className="whitespace-pre-wrap text-left">
+                    {scanResults}
+                  </pre>
+                </div>
+              )}
             </div>
             <div className="w-1/2 bg-gray-200 dark:bg-gray-800 p-6 rounded-xl">
               <img
                 src="https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif"
-                alt=""
+                alt="Data scanning illustration"
               />
             </div>
           </div>
