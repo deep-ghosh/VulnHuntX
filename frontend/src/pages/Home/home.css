@@ -1,41 +1,53 @@
 /* Home.css */
 
 .background-glow {
-    background: linear-gradient(45deg, rgba(255, 0, 150, 0.5), rgba(0, 204, 255, 0.5));
-    background-size: 400% 400%;
-    animation: gradientGlow 15s ease infinite;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 150, 0.5),
+    rgba(0, 204, 255, 0.5)
+  );
+  background-size: 400% 400%;
+  animation: gradientGlow 15s ease infinite;
 }
 
 @keyframes gradientGlow {
-    0% {
-        background-position: 0% 0%;
-    }
+  0% {
+    background-position: 0% 0%;
+  }
 
-    50% {
-        background-position: 100% 100%;
-    }
+  50% {
+    background-position: 100% 100%;
+  }
 
-    100% {
-        background-position: 0% 0%;
-    }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 .header-glow {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(255, 0, 150, 0.8), 0 0 20px rgba(255, 0, 150, 0.6), 0 0 30px rgba(255, 0, 150, 0.4), 0 0 40px rgba(255, 0, 150, 0.2);
-    animation: textGlow 1.5s ease-in-out infinite;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 0, 150, 0.8), 0 0 20px rgba(255, 0, 150, 0.6),
+    0 0 30px rgba(255, 0, 150, 0.4), 0 0 40px rgba(255, 0, 150, 0.2);
+  animation: textGlow 1.5s ease-in-out infinite;
 }
 
 @keyframes textGlow {
-    0% {
-        text-shadow: 0 0 5px rgba(255, 0, 150, 0.8);
-    }
+  0% {
+    text-shadow: 0 0 5px rgba(255, 0, 150, 0.8);
+  }
 
-    50% {
-        text-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
-    }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
+  }
 
-    100% {
-        text-shadow: 0 0 5px rgba(255, 0, 150, 0.8);
-    }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 0, 150, 0.8);
+  }
 }
+
+/* .bg-gif {
+  background-image: url("https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+} */

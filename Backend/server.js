@@ -11,8 +11,9 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve the HTML file (if you have a static frontend file)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/search", (req, res) => {
@@ -23,30 +24,9 @@ app.post("/search", (req, res) => {
   }
 
   console.log(`Received URL: ${url}`);
-  const sanitizedUrl = url.replace(/\/+$/, ""); // Remove trailing slashes
 
-  // Validate URL
-  try {
-    new URL(sanitizedUrl);
-    console.log(`Sanitized URL: ${sanitizedUrl}`);
-  } catch (e) {
-    console.error("URL validation failed:", e);
-    return res.status(400).json({ message: "Invalid URL format" });
-  }
-
-  const wordlistPath = path.join(__dirname, "wordlist.txt");
-  const outputFilePath = path.join(__dirname, "output.json");
-
-  // Check if wordlist exists
-  if (!fs.existsSync(wordlistPath)) {
-    console.error(`Wordlist not found at path: ${wordlistPath}`);
-    return res.status(500).json({ message: "Wordlist not found" });
-  }
-
-  // Construct FFuf command
-  const ffufCommand = `ffuf -w ${wordlistPath} -u ${sanitizedUrl}/FUZZ -t 40 -mc 200-499 -of json -o ${outputFilePath}`;
-
-  console.log(`Executing FFuf command: ${ffufCommand}`);
+  // Construct the FFuf command
+  const ffufCommand = `ffuf -w /path/to/wordlist.txt -u ${url}/FUZZ -t 40 -mc 200`;
 
   // Execute the FFuf command using exec
   exec(ffufCommand, (error, stdout, stderr) => {
