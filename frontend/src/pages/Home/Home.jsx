@@ -77,36 +77,34 @@ const Home = () => {
 
   return (
     <>
-      <div className="background-glow dark:bg-[#0D121C] w-full h-screen">
+      <div className="background-glow dark:bg-[#0D121C] w-full">
         <div className="max-w-7xl mx-auto flex min-h-screen ">
-          <div className="flex items-center h-fit mt-10 gap-6 ">
-            <div className=" p-8 md:p-10 space-y-8 duration-200 w-1/2 h-fit">
+          <div className="flex flex-col lg:flex-row items-center h-fit mt-10 lg:gap-6 ">
+            <div className=" p-6 md:p-10 space-y-8 duration-200 w-full lg:w-1/2 h-fit">
               <div className="text-center">
-                <h2 className="text-md md:text-5xl font-light dark:text-white header-glow">
-                  Your Data Truly Safe?
+                <h2 className="text-3xl md:text-5xl font-light dark:text-white header-glow">
+                  Your Website Truly Safe?
                 </h2>
-                <h2 className="text-5xl md:text-6xl font-bold dark:text-white">
-                  Expose Weak Spots and Uncover Risks in 12 Seconds!
+                <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white">
+                  Expose Weak Spots and Uncover Risks Within Seconds!
                 </h2>
               </div>
-              <div className="flex flex-col md:flex-row justify-between dark:bg-gray-800 bg-orange-400 rounded-lg space-y-4 md:space-y-0 p-4">
-                {/* <div className="w-full"> */}
+              <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-800 bg-orange-400 rounded-lg space-y-4 lg:space-y-0 p-4">
                 <input
                   type="text"
                   name="domain"
                   value={url}
                   onChange={handleChange}
                   placeholder="Enter website URL"
-                  className={`w-full rounded-s-md outline-none bg-white placeholder:text-gray-400 placeholder:text-2xl border-none ${
+                  className={`w-full rounded-md lg:rounded-s-md lg:rounded-e-none outline-none bg-white placeholder:text-gray-400 placeholder:text-2xl border-none p-4 ${
                     errorMessage ? "border-red-500 border-2 text-red-500" : ""
                   }`}
                   required
                 />
-                {/* </div> */}
                 <button
                   type="submit"
                   onClick={handleScan}
-                  className="bg-yellow-300 dark:bg-orange-400 rounded-e-md p-4 text-xl font-medium flex items-center gap-4"
+                  className="bg-yellow-300 dark:bg-orange-400 rounded-md lg:rounded-e-md lg:rounded-s-none p-4 text-xl font-medium flex items-center gap-4 justify-center active:scale-95 duration-200"
                 >
                   <IoSearch className="w-6 h-6" />
                   Scan
@@ -131,7 +129,7 @@ const Home = () => {
                 </div>
               )}
             </div>
-            <div className="w-1/2 bg-gray-200 dark:bg-gray-800 p-6 rounded-xl">
+            <div className="lg:w-1/2 bg-gray-100 dark:bg-gray-800 p-6 m-4 rounded-xl">
               <img
                 src="https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif"
                 alt="Data scanning illustration"

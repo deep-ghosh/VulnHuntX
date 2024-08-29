@@ -11,11 +11,6 @@ app.use(cors());
 // Parse application/json
 app.use(express.json());
 
-// Serve the HTML file (if you have a static frontend file)
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
 // Handle the search request and run FFuf for fuzzing
 app.post("/search", (req, res) => {
   const url = req.body.url; // Retrieve the URL from the request body
@@ -23,7 +18,7 @@ app.post("/search", (req, res) => {
   console.log(`Received URL: ${url}`);
 
   // Construct the FFuf command
-  const ffufCommand = `ffuf -w /path/to/wordlist.txt -u ${url}/FUZZ -t 40 -mc 200`;
+  const ffufCommand = `ffuf -w /path/to/wordlist.txt -u ${url}/FUZZ -t 40 -mc 200 -of json`;
 
   // Execute the FFuf command
   exec(ffufCommand, (error, stdout, stderr) => {
