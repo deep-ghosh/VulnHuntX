@@ -1,0 +1,21 @@
+/* Loading.css */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8); /* Optional: a semi-transparent background */
+  z-index: 1000; /* Ensure it is above other elements */
+}
+
+
+.bg-gif {
+    background-image: url("https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
