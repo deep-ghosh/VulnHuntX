@@ -14,8 +14,6 @@ const Home = () => {
       setSuccessMessage("");
       setScanResults("");
 
-      console.log("Sending URL to backend:", url);
-
       try {
         const response = await fetch(`http://localhost:3000/search`, {
           method: "POST",
@@ -34,7 +32,6 @@ const Home = () => {
           throw new Error(data.error);
         }
 
-        console.log("Scan result:", data.result);
         setScanResults(data.result);
         setSuccessMessage("Scan completed successfully! Results are displayed below.");
 
@@ -44,7 +41,6 @@ const Home = () => {
 
         setUrl("");
       } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
         setErrorMessage(error.message || "An error occurred while scanning the URL. Please try again.");
         setTimeout(() => {
           setErrorMessage("");
@@ -62,6 +58,39 @@ const Home = () => {
     setUrl(event.target.value);
     setErrorMessage("");
     setSuccessMessage("");
+  };
+
+  const renderResults = () => {
+    if (!scanResults || !scanResults.results || scanResults.results.length === 0) {
+      return <p>No vulnerabilities found.</p>;
+    }
+
+    return (
+      <div className="result-table">
+        <table className="min-w-full bg-white dark:bg-gray-900">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Path</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Status</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Size</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Words</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Lines</th>
+            </tr>
+          </thead>
+          <tbody>
+            {scanResults.results.map((result, index) => (
+              <tr key={index} className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                <td className="py-2 px-4 border-b dark:border-gray-700">{result.url}</td>
+                <td className="py-2 px-4 border-b dark:border-gray-700">{result.status}</td>
+                <td className="py-2 px-4 border-b dark:border-gray-700">{result.length}</td>
+                <td className="py-2 px-4 border-b dark:border-gray-700">{result.words}</td>
+                <td className="py-2 px-4 border-b dark:border-gray-700">{result.lines}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
   };
 
   return (
@@ -110,9 +139,7 @@ const Home = () => {
             )}
             {scanResults && (
               <div className="bg-gray-200 dark:bg-gray-800 p-4 mt-4 rounded-lg">
-                <pre className="whitespace-pre-wrap text-left">
-                  {JSON.stringify(scanResults, null, 2)}
-                </pre>
+                {renderResults()}
               </div>
             )}
           </div>

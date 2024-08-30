@@ -1,11 +1,8 @@
-/* Home.css */
-
+/* Background Animation */
 .background-glow {
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 150, 0.5),
-    rgba(0, 204, 255, 0.5)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 0, 150, 0.5),
+      rgba(0, 204, 255, 0.5));
   background-size: 400% 400%;
   animation: gradientGlow 15s ease infinite;
 }
@@ -24,10 +21,13 @@
   }
 }
 
+/* Header Text Glow Effect */
 .header-glow {
   color: #fff;
-  text-shadow: 0 0 10px rgba(255, 0, 150, 0.8), 0 0 20px rgba(255, 0, 150, 0.6),
-    0 0 30px rgba(255, 0, 150, 0.4), 0 0 40px rgba(255, 0, 150, 0.2);
+  text-shadow: 0 0 10px rgba(255, 0, 150, 0.8),
+    0 0 20px rgba(255, 0, 150, 0.6),
+    0 0 30px rgba(255, 0, 150, 0.4),
+    0 0 40px rgba(255, 0, 150, 0.2);
   animation: textGlow 1.5s ease-in-out infinite;
 }
 
@@ -45,9 +45,29 @@
   }
 }
 
-/* .bg-gif {
-  background-image: url("https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-} */
+/* Result Table Styling */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.result-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.result-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.result-table td {
+  background-color: white;
+}
