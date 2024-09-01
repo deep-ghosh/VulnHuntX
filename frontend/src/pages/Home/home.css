@@ -1,30 +1,19 @@
-/* Home.css */
-
-.background-glow {
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 150, 0.5),
-    rgba(0, 204, 255, 0.5)
-  );
-  background-size: 400% 400%;
-  animation: gradientGlow 15s ease infinite;
+/* Typing effect */
+.animated-text {
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #FF8C00, #DA70D6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  width: 190%;
 }
 
-@keyframes gradientGlow {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  50% {
-    background-position: 100% 100%;
-  }
-
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-.header-glow {
+/* Basic styling for the Home component */
+/* h2.animated-text {
+  font-size: 3rem;
   color: #fff;
   text-align: center;
   font-weight: bold;
@@ -90,13 +79,60 @@
   }
 
   100% {
-    text-shadow: 0 0 5px rgba(255, 0, 150, 0.8);
+    transform: scale(1);
   }
 }
-
-/* .bg-gif {
-  background-image: url("https://user-images.githubusercontent.com/40064496/120735130-6c9e2300-c4c0-11eb-8346-94429163466a.gif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* 
+.vuln-hunt-text {
+  font-size: 10rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #fa8b0c, #ff5673, #9c1aff, #1aa3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px;
+  -webkit-text-stroke-color: transparent;
+  transition: all 0.3s ease;
 } */
+
+/* Updated styling for the VulnHuntX introduction section */
+.vuln-hunt-text {
+  font-size: 10rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #fa8b0c, #ff5673, #9c1aff, #1aa3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px transparent;
+  /* For the gradient border effect */
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  letter-spacing: 0.1em;
+  /* Adjust letter spacing as needed */
+  /* text-shadow:
+    -1px -1px 0 #fa8b0c,
+    1px -1px 0 #ff5673,
+    -1px 1px 0 #9c1aff,
+    1px 1px 0 #1aa3ff; */
+  /* Create a gradient border effect */
+  transition: all 0.3s ease;
+}
+
+/* Additional styles for 'INTRODUCING' with gradient border effect */
+.introducing-text {
+  font-size: 4rem;
+  /* Adjust as needed */
+  font-weight: bold;
+  background: linear-gradient(to right, #fa8b0c, #ff5673, #9c1aff, #1aa3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px transparent;
+  /* For the gradient border effect */
+  background-clip: text;
+  letter-spacing: 0.2em;
+  /* Adjust letter spacing as needed */
+  text-shadow:
+    -1px -1px 0 #fa8b0c,
+    1px -1px 0 #ff5673,
+    -1px 1px 0 #9c1aff,
+    1px 1px 0 #1aa3ff;
+  /* Create a gradient border effect */
+}

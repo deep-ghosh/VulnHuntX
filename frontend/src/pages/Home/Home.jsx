@@ -307,11 +307,7 @@ const Home = () => {
                 <h1>
                   <animated.div
                     style={springProps}
-<<<<<<< HEAD
-                    className="introducing-text"
-=======
                     className="text-[4rem] md:text-[4rem] lg:text-[6rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 tracking-widest leading-tight vuln-hunt-text"
->>>>>>> 009f999d3e3f9e2a285cc9d642d6824792012771
                   >
                     INTRODUCING
                   </animated.div>
