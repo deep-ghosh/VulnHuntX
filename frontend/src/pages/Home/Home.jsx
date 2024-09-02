@@ -7,6 +7,8 @@ import vid from "../../assets/videos/BottomScroll.mp4";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useSpring, animated } from "@react-spring/web";
+import Lottie from "lottie-react";
+import animationData from "../../assets/Animation/ani3.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +19,8 @@ const Home = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const videoRef = useRef(null);
+  const lastSectionRef = useRef(null); // Ref for the last section
+  const lastSectionVideoRef = useRef(null); // Ref for the background video in the last section
   const navigate = useNavigate();
 
   const messages = [
@@ -27,9 +31,9 @@ const Home = () => {
 
   // Typing effect hook
   useEffect(() => {
-    const typingSpeed = 100; // Speed of typing
-    const deletingSpeed = 50; // Speed of deleting
-    const delay = 2000; // Delay before deleting starts
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const delay = 2000;
 
     const handleTypingEffect = () => {
       const currentMessage = messages[currentMessageIndex];
@@ -63,22 +67,22 @@ const Home = () => {
     return () => clearInterval(typingInterval);
   }, [displayedText, isDeleting, currentMessageIndex, messages]);
 
-  // GSAP scroll-trigger effect hook
+  // GSAP scroll-trigger effect hook for video
   useEffect(() => {
     const videoElement = videoRef.current;
+    const lastSectionVideoElement = lastSectionVideoRef.current;
 
     const onVideoLoaded = () => {
       if (videoElement) {
         const videoDuration = videoElement.duration || 0;
 
-        // GSAP scroll-triggered animation for video
         gsap.to(videoElement, {
           currentTime: videoDuration,
           ease: "none",
           scrollTrigger: {
             trigger: videoElement,
             start: "top top",
-            end: "+=" + videoDuration * 1000 + "px", // Ensuring smooth scroll effect for video
+            end: "+=" + videoDuration * 1000 + "px",
             scrub: true,
             onUpdate: (self) => {
               if (videoElement) {
@@ -88,7 +92,6 @@ const Home = () => {
           },
         });
 
-        // Initial fade-in effect
         gsap.fromTo(
           videoElement,
           { opacity: 0 },
@@ -102,6 +105,23 @@ const Home = () => {
             },
           }
         );
+
+        if (lastSectionVideoElement) {
+          gsap.fromTo(
+            lastSectionVideoElement,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 1.5,
+              scrollTrigger: {
+                trigger: lastSectionRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
       }
     };
 
@@ -175,20 +195,69 @@ const Home = () => {
   };
 
   // React Spring for VulnHuntX
-  const [springProps, api] = useSpring(() => ({
+  // const [springProps, api] = useSpring(() => ({
+  //   from: { transform: "scale(0.5)", opacity: 0 },
+  //   to: { transform: "scale(1)", opacity: 1 },
+  //   config: { tension: 200, friction: 20 },
+  // }));
+
+  // useEffect(() => {
+  //   ScrollTrigger.create({
+  //     trigger: ".vuln-hunt-section",
+  //     start: "top bottom",
+  //     onEnter: () => api.start({ transform: "scale(1)", opacity: 1 }),
+  //     onLeaveBack: () => api.start({ transform: "scale(0.5)", opacity: 0 }),
+  //   });
+  // }, [api]);
+
+  // React Spring for VulnHuntX
+  const [vulnHuntSpringProps, vulnHuntApi] = useSpring(() => ({
     from: { transform: "scale(0.5)", opacity: 0 },
     to: { transform: "scale(1)", opacity: 1 },
     config: { tension: 200, friction: 20 },
+  }));
+
+  // React Spring for INTRODUCING
+  const [introducingSpringProps, introducingApi] = useSpring(() => ({
+    from: { transform: "scale(0.5)", opacity: 0 },
+    to: { transform: "scale(1)", opacity: 1 },
+    config: { tension: 200, friction: 6 },
   }));
 
   useEffect(() => {
     ScrollTrigger.create({
       trigger: ".vuln-hunt-section",
       start: "top bottom",
-      onEnter: () => api.start({ transform: "scale(1)", opacity: 1 }),
-      onLeaveBack: () => api.start({ transform: "scale(0.5)", opacity: 0 }),
+      onEnter: () => {
+        vulnHuntApi.start({ transform: "scale(1)", opacity: 1 });
+        introducingApi.start({ transform: "scale(1)", opacity: 1 });
+      },
+      onLeaveBack: () => {
+        vulnHuntApi.start({ transform: "scale(0.5)", opacity: 0 });
+        introducingApi.start({ transform: "scale(0.5)", opacity: 0 });
+      },
     });
-  }, [api]);
+  }, [vulnHuntApi, introducingApi]);
+
+  // GSAP scroll-trigger effect hook for background fade-in
+  // useEffect(() => {
+  //   const lastSectionElement = lastSectionRef.current;
+
+  //   gsap.fromTo(
+  //     ".background-fade",
+  //     { opacity: 0 },
+  //     {
+  //       opacity: 1,
+  //       duration: 1,
+  //       scrollTrigger: {
+  //         trigger: lastSectionElement,
+  //         start: "top center",
+  //         end: "bottom top",
+  //         scrub: true,
+  //       },
+  //     }
+  //   );
+  // }, []);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
@@ -265,57 +334,64 @@ const Home = () => {
           {/* New Sections */}
           <div className="w-full">
             {/* Section 1: Move Beyond */}
-            <section className="h-screen flex justify-center items-center">
-              <h1 className="text-6xl font-bold text-neutral-900 dark:text-white">
+            <section className="h-screen flex justify-center items-center ">
+              <h1 className="text-7xl tracking-[0.4em] font-bold  font-pixelify text-transparent bg-gradient-to-r from-emerald-400 via-[#e6ab2d] to-[#e760f1] bg-clip-text">
                 Move Beyond
               </h1>
             </section>
 
             {/* Section 2: Detecting Cyberattacks */}
             <section className="h-screen flex justify-center items-center">
-              <h1 className="text-6xl font-bold text-neutral-900 dark:text-white">
+              <h1 className="text-7xl tracking-[0.2em] font-bold font-pixelify text-transparent bg-gradient-to-r from-emerald-400 via-[#ece22b] to-[#31d42b] bg-clip-text">
                 Detecting Cyberattacks
               </h1>
             </section>
 
             {/* Section 3: Predicting Cyberattacks */}
             <section className="h-screen flex justify-center items-center">
-              <h1 className="text-6xl font-bold text-neutral-900 dark:text-white">
+              <h1 className="text-7xl tracking-[0.2em] font-bold font-pixelify text-transparent bg-gradient-to-r from-[#d42b60] via-[#ece22b] to-[#2baad4] bg-clip-text">
                 Predicting Cyberattacks
               </h1>
             </section>
 
             {/* Section 4: Self-Heal From Cyber Attacks */}
             <section className="h-screen flex justify-center items-center">
-              <h1 className="text-6xl font-bold text-neutral-900 dark:text-white">
+              <h1 className="text-7xl tracking-widest font-bold font-pixelify text-transparent bg-gradient-to-r from-red-400 via-[#ece22b] to-[#31d42b] bg-clip-text">
                 Self-Heal From Cyber Attacks
               </h1>
             </section>
 
-            {/* <section className="h-screen flex flex-col justify-center items-center">
-              <h1 className="text-6xl font-bold text-neutral-900 dark:text-white">
-                INTRODUCING
-              </h1>
-              <h1 className="text-[10rem] font-bold text-neutral-900 dark:text-white">
-                VULNHUNTX
-              </h1>
-            </section> */}
-
-            <section className="h-screen flex flex-col justify-center items-center vuln-hunt-section">
-              <div className="text-center mb-4">
-                {/* Introducing Text */}
-                <h1>
-                  <animated.div
-                    style={springProps}
-                    className="text-[4rem] md:text-[4rem] lg:text-[6rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 tracking-widest leading-tight vuln-hunt-text"
-                  >
-                    INTRODUCING
-                  </animated.div>
-                </h1>
-              </div>
+            {/* Section 5: VulnHuntX */}
+            <section className="h-screen w-full flex flex-col justify-center items-center">
+              {/* Full-Screen Background Video */}
+              <video
+                muted
+                ref={lastSectionVideoRef}
+                src={homeBg}
+                autoPlay
+                loop
+                className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+                style={{ objectFit: "cover" }}
+              >
+                Your browser does not support the video tag.
+              </video>
+              <Lottie
+                loop
+                animationData={animationData}
+                style={{ width: "100vw", height: "100vh" }}
+                className="absolute"
+              />
               <animated.div
-                style={springProps}
-                className="text-8xl md:text-[12rem] lg:text-[15rem] font-bold leading-tight vuln-hunt-text"
+                // style={springProps}
+                style={introducingSpringProps}
+                className="text-[2rem] md:text-[4rem] lg:text-[6rem] font-bold tracking-widest leading-tighter introducing-text"
+              >
+                I N T R O D U C I N G
+              </animated.div>
+              <animated.div
+                // style={springProps}
+                style={vulnHuntSpringProps}
+                className="text-8xl md:text-[8rem] lg:text-[8rem] font-bold leading-tight vuln-hunt-text"
               >
                 VulnHuntX
               </animated.div>
@@ -326,6 +402,5 @@ const Home = () => {
     </div>
   );
 };
-
 
 export default Home;
