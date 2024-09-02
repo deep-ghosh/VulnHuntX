@@ -5,7 +5,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", flowbite.content()],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        pixelify: ["Pixelify Sans", "sans-serif"],
+      },
+    },
   },
   plugins: [flowbite.plugin()],
 };

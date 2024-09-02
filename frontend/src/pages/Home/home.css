@@ -1,7 +1,7 @@
 /* Typing effect */
 .animated-text {
   font-size: 3.5rem;
-  background: linear-gradient(45deg, #FF8C00, #DA70D6);
+  background: linear-gradient(45deg, #ff8c00, #da70d6);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -11,15 +11,12 @@
   width: 190%;
 }
 
-
-
 /* Styling for the VulnHuntX introduction section */
 .vuln-hunt-section {
   position: relative;
 }
 
-/* 
-@keyframes pulse {
+/* @keyframes pulse {
   0% {
     transform: scale(1.5);
   }
@@ -61,12 +58,9 @@
   -webkit-text-stroke: 1px transparent;
   /* For the gradient border effect */
   background-clip: text;
-  letter-spacing: 0.2em;
+  /* letter-spacing: 0.2em; */
   /* Adjust letter spacing as needed */
-  text-shadow:
-    -1px -1px 0 #fa8b0c,
-    1px -1px 0 #ff5673,
-    -1px 1px 0 #9c1aff,
-    1px 1px 0 #1aa3ff;
+  /* text-shadow: -1px -1px 0 #fa8b0c, 1px -1px 0 #ff5673, -1px 1px 0 #9c1aff,
+    1px 1px 0 #1aa3ff; */
   /* Create a gradient border effect */
 }
