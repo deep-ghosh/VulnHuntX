@@ -1,8 +1,10 @@
 import React from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc"; // Google icon from React Icons
+import { SiMicrosoftoutlook, SiGithub } from "react-icons/si"; // Outlook and GitHub icons from React Icons
 
-const Login = () => {
+const SignIn = () => {
   // Spring animation for the login form
   const springProps = useSpring({
     from: { opacity: 0, transform: "translateY(100px)" },
@@ -76,6 +78,23 @@ const Login = () => {
           </button>
         </form>
 
+        <div className="text-center text-white mt-6">Or sign in with:</div>
+
+        <div className="flex justify-center mt-4 space-x-4">
+          <button className="text-blue-400 flex items-center px-4 py-2 rounded-md shadow hover:shadow-lg transition-transform duration-300">
+            <FcGoogle className="w-6 h-6 mr-2" />
+          </button>
+
+          {/* Added GitHub button in the middle */}
+          <button className="text-blue-400 flex items-center px-4 py-2 rounded-md shadow hover:shadow-lg transition-transform duration-300">
+            <SiGithub className="w-6 h-6 mr-2" />
+          </button>
+
+          <button className="text-blue-400 flex items-center px-4 py-2 rounded-md shadow hover:shadow-lg transition-transform duration-300">
+            <SiMicrosoftoutlook className="w-6 h-6 mr-2" />
+          </button>
+        </div>
+
         <div className="text-center text-white mt-6">
           Don't have an account?{" "}
           <Link to="/signup" className="text-blue-400 hover:underline">
@@ -87,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

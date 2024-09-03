@@ -62,9 +62,12 @@ const Help = () => {
             If you have any other questions or need further assistance, feel
             free to contact our support team.
           </p>
-          <button className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-700">
+          <a
+            href="mailto:latenightcoder1@gmail.com"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-700"
+          >
             Contact Support
-          </button>
+          </a>
         </section>
       </div>
     </div>

@@ -211,33 +211,33 @@ const Home = () => {
   // }, [api]);
 
   // React Spring for VulnHuntX
-  const [vulnHuntSpringProps, vulnHuntApi] = useSpring(() => ({
-    from: { transform: "scale(0.5)", opacity: 0 },
-    to: { transform: "scale(1)", opacity: 1 },
+  const [vulnHuntSpringProps, setVulnHuntSpring] = useSpring(() => ({
+    transform: "scale(0.5)",
+    opacity: 0,
     config: { tension: 200, friction: 20 },
   }));
 
   // React Spring for INTRODUCING
-  const [introducingSpringProps, introducingApi] = useSpring(() => ({
-    from: { transform: "scale(0.5)", opacity: 0 },
-    to: { transform: "scale(1)", opacity: 1 },
+  const [introducingSpringProps, setIntroducingSpring] = useSpring(() => ({
+    transform: "scale(0.5)",
+    opacity: 0,
     config: { tension: 200, friction: 6 },
   }));
 
   useEffect(() => {
     ScrollTrigger.create({
       trigger: ".vuln-hunt-section",
-      start: "top bottom",
+      start: "top 80%", // Start animation when the section is near the viewport
       onEnter: () => {
-        vulnHuntApi.start({ transform: "scale(1)", opacity: 1 });
-        introducingApi.start({ transform: "scale(1)", opacity: 1 });
+        setVulnHuntSpring({ transform: "scale(1)", opacity: 1 });
+        setIntroducingSpring({ transform: "scale(1)", opacity: 1 });
       },
       onLeaveBack: () => {
-        vulnHuntApi.start({ transform: "scale(0.5)", opacity: 0 });
-        introducingApi.start({ transform: "scale(0.5)", opacity: 0 });
+        setVulnHuntSpring({ transform: "scale(0.5)", opacity: 0 });
+        setIntroducingSpring({ transform: "scale(0.5)", opacity: 0 });
       },
     });
-  }, [vulnHuntApi, introducingApi]);
+  }, [setVulnHuntSpring, setIntroducingSpring]);
 
   // GSAP scroll-trigger effect hook for background fade-in
   // useEffect(() => {
@@ -382,14 +382,12 @@ const Home = () => {
                 className="absolute"
               />
               <animated.div
-                // style={springProps}
                 style={introducingSpringProps}
                 className="text-[2rem] md:text-[4rem] lg:text-[6rem] font-bold tracking-widest leading-tighter introducing-text"
               >
                 I N T R O D U C I N G
               </animated.div>
               <animated.div
-                // style={springProps}
                 style={vulnHuntSpringProps}
                 className="text-8xl md:text-[8rem] lg:text-[8rem] font-bold leading-tight vuln-hunt-text"
               >
