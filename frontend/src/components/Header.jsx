@@ -1,6 +1,6 @@
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Button } from "flowbite-react";
 
 const navList = [
@@ -20,6 +20,7 @@ const navList = [
 
 const Header = () => {
   const [toggleMode, setToggleMode] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     if (toggleMode) {
@@ -43,11 +44,17 @@ const Header = () => {
     }
     `}
     >
-      <div className="max-w-full mx-auto flex items-center justify-between relative ">
+      <div className="max-w-full mx-auto flex items-center justify-between relative">
         {/* logo */}
         <NavLink to="/">
           <div className="w-[100px] text-2xl md:text-6xl font-bold">
-            <span className="dark:text-white">Vuln</span>
+            <span
+              className={`
+            ${location.pathname === "/" ? "text-white" : ""}
+            dark:text-white`}
+            >
+              Vuln
+            </span>
             <span className="text-orange-500">HuntX</span>
           </div>
         </NavLink>
@@ -56,7 +63,11 @@ const Header = () => {
           <ul className="gap-x-6 lg:flex flex-row hidden">
             {navList.map((navItem, index) => (
               <NavLink to={navItem.path} key={index}>
-                <li className="flex items-center gap-x-1 duration-150 hover:text-orange-500 list-none cursor-pointer text-2xl font-medium text-[#343C3F] dark:text-white dark:hover:text-orange-500">
+                <li
+                  className={`flex items-center gap-x-1 duration-150 hover:text-orange-500 list-none cursor-pointer text-2xl font-medium text-[#343C3F] dark:text-white dark:hover:text-orange-500 ${
+                    location.pathname === "/" ? "text-white" : ""
+                  }`}
+                >
                   {navItem.name}
                 </li>
               </NavLink>

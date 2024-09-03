@@ -302,7 +302,7 @@ const Home = () => {
                 <span>Uncover Risks Within Seconds!</span>
               </h2>
 
-              <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-800 dark:hover:bg-gradient-to-r dark:from-orange-400 dark:via-pink-400 dark:to-blue-500 bg-orange-400 rounded-lg space-y-4 lg:space-y-0 p-[4px] mt-20 w-4/5">
+              <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-800 hover:bg-gradient-to-r from-orange-400 via-pink-400 to-blue-500 rounded-lg space-y-4 lg:space-y-0 p-[4px] mt-20 w-4/5">
                 <input
                   type="text"
                   name="domain"
@@ -317,7 +317,7 @@ const Home = () => {
                 <button
                   type="submit"
                   onClick={handleScan}
-                  className="bg-white rounded-md lg:rounded-e-md lg:rounded-s-none px-8 py-6 text-xl font-medium flex items-center gap-4 justify-center active:scale-95 duration-200 hover:bg-gradient-to-t hover:from-yellow-300 hover:to-orange-500"
+                  className="bg-white rounded-md lg:rounded-e-md lg:rounded-s-none px-8 py-6 text-xl font-medium flex items-center gap-4 justify-center active:scale-95 duration-200 hover:gap-x-6 hover:bg-gradient-to-t hover:from-yellow-300 hover:to-orange-500"
                 >
                   <IoSearch className="w-6 h-6" />
                   SCAN
