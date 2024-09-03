@@ -34,8 +34,16 @@ const Header = () => {
   };
 
   return (
-    <header className="p-4 font-poppins bg-transparent duration-300">
-      <div className="max-w-full mx-auto flex items-center justify-between relative">
+    <header
+      className={`p-4 font-poppins duration-300  
+    ${
+      location.pathname === "/"
+        ? "bg-transparent"
+        : "bg-white dark:bg-[#020300]"
+    }
+    `}
+    >
+      <div className="max-w-full mx-auto flex items-center justify-between relative ">
         {/* logo */}
         <NavLink to="/">
           <div className="w-[100px] text-2xl md:text-6xl font-bold">

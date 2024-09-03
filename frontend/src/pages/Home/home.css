@@ -18,10 +18,10 @@
 
 /* @keyframes pulse {
   0% {
-    transform: scale(1);
+    transform: scale(1.5);
   }
 
-  50% {
+  0% {
     transform: scale(1.05);
   }
 
@@ -29,6 +29,7 @@
     transform: scale(1);
   }
 } */
+
 
 /* Updated styling for the VulnHuntX introduction section */
 .vuln-hunt-text {
@@ -42,13 +43,7 @@
   background-clip: text;
   /* text-fill-color: transparent; */
   letter-spacing: 0.1em;
-  /* Adjust letter spacing as needed */
-  /* text-shadow:
-    -1px -1px 0 #fa8b0c,
-    1px -1px 0 #ff5673,
-    -1px 1px 0 #9c1aff,
-    1px 1px 0 #1aa3ff; */
-  /* Create a gradient border effect */
+  
   transition: all 0.3s ease;
 }
 
