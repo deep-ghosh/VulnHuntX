@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; // Google icon from React Icons
 import { SiMicrosoftoutlook, SiGithub } from "react-icons/si"; // Outlook and GitHub icons from React Icons
 
 const SignIn = () => {
+  // State to handle forgot password message visibility
+  const [showForgotMessage, setShowForgotMessage] = useState(false);
+
+  // Function to handle Forgot Password click
+  const handleForgotPassword = () => {
+    setShowForgotMessage(true);
+    setTimeout(() => {
+      setShowForgotMessage(false);
+    }, 2000); // Show message for 1 second
+  };
+
   // Spring animation for the login form
   const springProps = useSpring({
     from: { opacity: 0, transform: "translateY(100px)" },
@@ -14,8 +25,6 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0D121C] via-[#1c2b40] to-[#0D121C] flex justify-center items-center">
-      
-
       <animated.div
         style={springProps}
         className="bg-[#111927] p-10 rounded-xl shadow-lg max-w-md w-full"
@@ -58,13 +67,21 @@ const SignIn = () => {
               <input type="checkbox" className="mr-2 accent-blue-500" />
               Remember Me
             </label>
-            <Link
-              to="/forgot-password"
+            <button
+              type="button"
               className="text-blue-400 hover:underline"
+              onClick={handleForgotPassword}
             >
               Forgot Password?
-            </Link>
+            </button>
           </div>
+
+          {/* Forgot password message */}
+          {showForgotMessage && (
+            <div className="text-center text-green-400 mt-4">
+              Check your email to confirm the password reset.
+            </div>
+          )}
 
           <button
             type="submit"
@@ -81,7 +98,7 @@ const SignIn = () => {
             <FcGoogle className="w-6 h-6 mr-2" />
           </button>
 
-          {/* Added GitHub button in the middle */}
+          {/* GitHub button in the middle */}
           <button className="text-blue-400 flex items-center px-4 py-2 rounded-md shadow hover:shadow-lg transition-transform duration-300">
             <SiGithub className="w-6 h-6 mr-2" />
           </button>

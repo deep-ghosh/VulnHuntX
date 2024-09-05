@@ -6,6 +6,13 @@ import { useSpring, animated } from "@react-spring/web";
 // import missionBg from "../../assets/images/missionBg.jpg";
 // import animationData from "../../assets/Animation/aniAbout.json";
 import aboutVid from "../assets/videos/Vicon.mp4";
+import deep from "../assets/TeamMembers/Deep.jpg";
+import prachi from "../assets/TeamMembers/Prachi.jpg";
+import snihita from "../assets/TeamMembers/snihita.jpg";
+import anyket from "../assets/TeamMembers/Anyket.png";
+import Krish from "../assets/TeamMembers/Krish.jpg";
+import mania from "../assets/TeamMembers/mania.jpg";
+// import {} from "../assets/TeamMembers/Deep.jpg"
 import Lottie from "lottie-react";
 import TeamCards from "../components/TeamCards";
 
@@ -34,35 +41,35 @@ const teamList = [
     id: 1,
     name: "Deep Ghosh",
     role: "Team Lead",
-    image: "https://via.placeholder.com/150",
+    image: deep,
     description: "Leads the team towards project success.",
   },
   {
     id: 2,
     name: "Mania Rahman",
     role: "UI/UX Lead",
-    image: "https://via.placeholder.com/150",
+    image: mania,
     description: "Leads design and user experience strategies.",
   },
   {
     id: 3,
     name: "Snihita Nandi",
     role: "UI Expert & Video Editor",
-    image: "https://via.placeholder.com/150",
+    image: snihita,
     description: "Specializes in UI design and video editing.",
   },
   {
     id: 4,
     name: "Krish Gupta",
     role: "Lead Developer",
-    image: "https://via.placeholder.com/150",
+    image: Krish,
     description: "Heads the development of technical solutions.",
   },
   {
     id: 5,
     name: "Anyket Naskar",
     role: "Cyber Security Expert",
-    image: "https://via.placeholder.com/150",
+    image: anyket,
     description: "Secures systems against cyber threats.",
   },
 
@@ -70,7 +77,7 @@ const teamList = [
     id: 6,
     name: "Prachi Jha",
     role: "Marketing Manager",
-    image: "https://via.placeholder.com/150",
+    image: prachi,
     description: "Drives marketing strategies and campaigns.",
   },
 ];
