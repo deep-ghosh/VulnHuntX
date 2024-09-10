@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "../assets/Animation/animation.json";
@@ -209,7 +209,16 @@ const Result = () => {
                         key={index}
                         className="border-b border-gray-200 dark:border-gray-700 dark:text-white"
                       >
-                        <td className="p-4">{result.url}</td>
+                        <td className="p-4">
+                          <a
+                            href={result.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-400/60"
+                          >
+                            {result.url}
+                          </a>
+                        </td>
                         <td className="p-4">{result.status}</td>
                         <td className="p-4">{result.length}</td>
                         <td className="p-4">{result.words}</td>

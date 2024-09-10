@@ -1,7 +1,6 @@
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Button } from "flowbite-react";
 
 const navList = [
   {
@@ -90,15 +89,19 @@ const Header = () => {
             )}
           </div>
 
-          <NavLink to="/signin">
-            <Button
-              outline
-              gradientDuoTone="pinkToOrange"
-              className="whitespace-nowrap"
-              size="md"
+          <NavLink
+            to="/signin"
+            className="p-[2px] bg-gradient-to-tr from-orange-400 to-pink-500 rounded-md"
+          >
+            <button
+              className={`${
+                location.pathname === "/"
+                  ? "bg-[#020300]/90 text-white"
+                  : "bg-white"
+              } whitespace-nowrap duration-200 dark:bg-[#020300] hover:bg-gradient-to-bl dark:from-orange-400 dark:to-pink-500 from-orange-400 to-pink-500 px-4 py-2 rounded-md dark:text-white hover:text-white font-medium`}
             >
               Login
-            </Button>
+            </button>
           </NavLink>
         </div>
       </div>

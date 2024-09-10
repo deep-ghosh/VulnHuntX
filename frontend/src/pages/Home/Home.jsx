@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
@@ -302,7 +302,7 @@ const Home = () => {
                 <span>Uncover Risks Within Seconds!</span>
               </h2>
 
-              <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-800 hover:bg-gradient-to-r from-orange-400 via-pink-400 to-blue-500 rounded-lg space-y-4 lg:space-y-0 p-[4px] mt-20 w-4/5">
+              <div className="flex flex-col lg:flex-row justify-between bg-gradient-to-l hover:bg-gradient-to-tr from-orange-400 via-pink-400 to-blue-500 rounded-lg space-y-4 lg:space-y-0 p-[4px] mt-20 w-4/5">
                 <input
                   type="text"
                   name="domain"
