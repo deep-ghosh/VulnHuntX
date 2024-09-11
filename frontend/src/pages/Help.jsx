@@ -63,7 +63,8 @@ const Help = () => {
             free to contact our support team.
           </p>
           <a
-            href="mailto:latenightcoder1@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=latenightcoder1@gmail.com"
+            target="_blank"
             className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-700"
           >
             Contact Support

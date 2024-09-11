@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import homeBg from "../../assets/videos/homeBg.mp4";
 import vid from "../../assets/videos/BottomScroll.mp4";
+// import vid from "../../assets/videos/stockbg.mp4";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useSpring, animated } from "@react-spring/web";

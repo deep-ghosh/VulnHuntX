@@ -13,6 +13,7 @@ import anyket from "../assets/TeamMembers/Anyket.png";
 import Krish from "../assets/TeamMembers/Krish.jpg";
 import mania from "../assets/TeamMembers/mania.jpg";
 // import {} from "../assets/TeamMembers/Deep.jpg"
+import FuffLogo from "../assets/images/FuffLogo.png";
 import Lottie from "lottie-react";
 import TeamCards from "../components/TeamCards";
 
@@ -217,7 +218,7 @@ const About = () => {
         </section>
 
         {/* Values Section */}
-        <section className="h-screen rounded-xl mt-20 p-14 flex flex-col justify-evenly items-center text-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
+        <section className="h-screen rounded-xl mt-20 p-14 gap-4 flex flex-col justify-evenly items-center text-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
           <h2 className="text-7xl font-bold ">Our Core Values</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="text-2xl">
@@ -239,6 +240,10 @@ const About = () => {
                 Delivering unparalleled quality and expertise to our clients.
               </p>
             </div>
+          </div>
+          <div>
+            <h2 className="text-7xl font-bold">Tool We Used</h2>
+            <img src={FuffLogo} alt="" sizes="" />
           </div>
         </section>
       </div>

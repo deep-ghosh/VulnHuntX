@@ -10,7 +10,7 @@ const RootLayout = () => {
     // Show loading screen for at least 5 seconds
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 1500); // 1 seconds
+    }, 5000); // 5 seconds
 
     // Clean up the timer on component unmount
     return () => clearTimeout(timer);

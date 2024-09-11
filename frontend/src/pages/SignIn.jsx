@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; // Google icon from React Icons
 import { SiMicrosoftoutlook, SiGithub } from "react-icons/si"; // Outlook and GitHub icons from React Icons
 
 const SignIn = () => {
   // State to handle forgot password message visibility
   const [showForgotMessage, setShowForgotMessage] = useState(false);
+  const [loading, setLoading] = useState(false); // State for loading state
+  const navigate = useNavigate();
 
   // Function to handle Forgot Password click
   const handleForgotPassword = () => {
@@ -14,6 +16,14 @@ const SignIn = () => {
     setTimeout(() => {
       setShowForgotMessage(false);
     }, 2000); // Show message for 1 second
+  };
+
+  // Function to handle Sign In click
+  const handleSignIn = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    setLoading(true);
+    navigate("/");
+    window.location.reload(); // Reload the page
   };
 
   // Spring animation for the login form
@@ -32,7 +42,7 @@ const SignIn = () => {
         <h2 className="text-white text-4xl font-bold text-center mb-6">
           Welcome Back!
         </h2>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSignIn}>
           <div>
             <label
               className="block text-white text-sm font-semibold"
@@ -84,6 +94,7 @@ const SignIn = () => {
           )}
 
           <button
+            // onClick={() => navigate("/")}
             type="submit"
             className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white py-3 rounded-md font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300"
           >

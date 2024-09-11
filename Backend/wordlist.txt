@@ -14,17 +14,6 @@ blog
 contact
 register
 
-
-
-
-
-test
-.aspx
-nul
-/ora_mysql/and//2=0
-/ora_mysql/and//2=2
-<script>alert("XSS")</script>
-";!--"<XSS>=&{()}
 account.html
 account.php
 adm/
@@ -419,7 +408,6 @@ compose
 composer
 compressed
 comunicator
-con
 confluence
 config
 configs

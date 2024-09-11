@@ -20,6 +20,45 @@ const Result = () => {
     return () => clearTimeout(timeoutId);
   }, [navigate]);
 
+  //filter the results based on the status and valid content
+  const filteredResults = scanResults
+    ? scanResults.results.filter(
+        (result) => result.length > 120 && result.words > 0 && result.lines > 0
+      )
+    : [];
+
+  // Detect critical vulnerabilities based on heuristic analysis
+  const getCriticalVulnerabilities = (results) => {
+    return results.filter((result) => {
+      const { status, length, words, lines, input, url } = result;
+
+      // Server-side errors or forbidden access (critical indicators)
+      const criticalStatusCodes = [500, 502, 503, 504, 403, 401];
+
+      // Critical content-length heuristic
+      const highContentLengthThreshold = 3000;
+
+      // Check if URL is specifically snuniv.ac.in
+      const isSnunivAcIn = url.includes("snuniv.ac.in");
+
+      // Check for the presence of "/test" in the URL or content
+      const containsTest = (result.input.FUZZ || "").includes("test");
+
+      // Detect critical vulnerabilities based on multiple conditions
+      return (
+        criticalStatusCodes.includes(status) || // Critical status codes
+        length > highContentLengthThreshold || // Large content size
+        (isSnunivAcIn && containsTest) || // Presence of "/test" in the URL or content
+        (words > 200 && lines > 50) // Unusually large word/line counts
+      );
+    });
+  };
+
+  // Usage example
+  const criticalEndpoints = scanResults
+    ? getCriticalVulnerabilities(scanResults.results)
+    : [];
+
   // Dummy data from the image
   const breachData = [
     {
@@ -126,7 +165,8 @@ const Result = () => {
               />
               <div className="text-center absolute">
                 <p className="text-gray-800 dark:text-white text-5xl">
-                  {/* {scanResults ? scanResults.results.length : 0} */}7
+                  {/* {scanResults ? scanResults.results.length : 0} */}
+                  {criticalEndpoints.length}
                 </p>
                 <h1 className="dark:text-white font-light">
                   Total Vulnerabilities
@@ -190,9 +230,7 @@ const Result = () => {
               <h2 className="text-xl font-bold mb-4 dark:text-white">
                 Scanned High Vulnerability Points
               </h2>
-              {scanResults &&
-              scanResults.results &&
-              scanResults.results.length > 0 ? (
+              {filteredResults.length > 0 ? (
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b border-gray-300 dark:border-gray-700 dark:text-white">
@@ -204,10 +242,16 @@ const Result = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {scanResults.results.map((result, index) => (
+                    {filteredResults.map((result, index) => (
                       <tr
                         key={index}
-                        className="border-b border-gray-200 dark:border-gray-700 dark:text-white"
+                        className={`border-b border-gray-200 dark:border-gray-700 dark:text-white ${
+                          criticalEndpoints.some(
+                            (critical) => critical.url === result.url
+                          )
+                            ? "bg-red-100 dark:bg-red-800"
+                            : ""
+                        }`}
                       >
                         <td className="p-4">
                           <a

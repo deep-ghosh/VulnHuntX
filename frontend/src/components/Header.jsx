@@ -90,7 +90,7 @@ const Header = () => {
           </div>
 
           <NavLink
-            to="/signin"
+            to="/signup"
             className="p-[2px] bg-gradient-to-tr from-orange-400 to-pink-500 rounded-md"
           >
             <button
