@@ -1,19 +1,15 @@
-
 const { exec } = require("child_process");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+require("dotenv").config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
 
 app.post("/search", (req, res) => {
   const url = req.body.url;
@@ -34,8 +30,10 @@ app.post("/search", (req, res) => {
     return res.status(400).json({ message: "Invalid URL format" });
   }
 
-  const wordlistPath = path.join(__dirname, "wordlist.txt");
-  const outputFilePath = path.join(__dirname, "output.json");
+  const wordlistPath =
+    process.env.WORDLIST_PATH || path.join(__dirname, "wordlist.txt");
+  const outputFilePath =
+    process.env.FFUF_OUTPUT_PATH || path.join(__dirname, "output.json");
 
   // Check if wordlist exists
   if (!fs.existsSync(wordlistPath)) {
@@ -96,4 +94,3 @@ app.post("/search", (req, res) => {
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
-

@@ -163,11 +163,14 @@ const Home = () => {
         : `https://${url}`;
 
     try {
-      const response = await fetch("http://localhost:3000/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: formattedUrl.trim() }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_DEV_BASE_URL}/search`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: formattedUrl.trim() }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
