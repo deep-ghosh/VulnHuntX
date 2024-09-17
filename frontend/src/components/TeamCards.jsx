@@ -1,5 +1,3 @@
-import React from "react";
-
 const TeamCards = (member) => {
   return (
     <>
@@ -14,7 +12,9 @@ const TeamCards = (member) => {
             {member.name}
           </h3>
           <p className="text-xl dark:text-gray-400">{member.role}</p>
-          <p className="text-lg dark:text-gray-300">{member.description}</p>
+          <p className="text-lg dark:text-gray-300 text-center">
+            {member.description}
+          </p>
         </div>
       </div>
     </>
